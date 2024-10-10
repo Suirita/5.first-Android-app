@@ -1,8 +1,4 @@
-2024-10-09 21:03
-
-Tags:[[Programing]]
-
-Status:[[Done]]
+# Git Revert
 
 # 1.What is Git revert?
 
