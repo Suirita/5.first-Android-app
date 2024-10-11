@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -42,32 +43,48 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun LocalCraft(name: String, description: String, modifier: Modifier = Modifier) {
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+    val image = painterResource(R.drawable.tata)
+
+    Box(
         modifier = modifier
             .fillMaxSize()
             .background(Color(0xFFE5F5FC))
-            .padding(16.dp)
     ) {
-        Card(
-            shape = RoundedCornerShape(8.dp),
-            elevation = CardDefaults.cardElevation(8.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White),
-            modifier = Modifier.padding(16.dp)
-        ) {
+        Image(
+            painter = image,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+        )
+
         Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .align(Alignment.Center)
+                .padding(16.dp)
+        ) {
+            Card(
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(24.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
                 modifier = Modifier.padding(16.dp)
             ) {
-                Header(name)
-                Spacer(modifier = Modifier.height(16.dp))
-                Description(description)
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    Header(name)
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Description(description)
+                }
             }
         }
     }
 }
+
 
 @Composable
 fun Header(name: String, modifier: Modifier = Modifier) {
